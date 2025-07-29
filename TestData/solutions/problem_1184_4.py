@@ -1,0 +1,12 @@
+class Solution:
+    def solution_1184_4(self, S):
+        N = len(S)
+        dp = [1] + [0] * N
+        for i in range(2 * N - 1):
+            l = i // 2
+            r = l + (i &amp; 1)
+            while 0 <= l and r < N and S[l] == S[r]:
+                dp[r + 1] |= (dp[l] << 1)
+                l -= 1
+                r += 1
+        return bool(dp[-1] &amp; (1 << 3))

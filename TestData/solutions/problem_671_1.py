@@ -1,0 +1,14 @@
+class Solution:
+    def solution_671_1(self, x: int, y: int) -> int:
+        if y<=x:
+            return x-y
+        else:
+            res=0
+            while x<y:
+                if y%2==1:
+                    y+=1
+                else:
+                    y=y//2
+                res+=1
+            res+=(x-y)
+            return res

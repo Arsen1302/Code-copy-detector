@@ -1,0 +1,12 @@
+class Solution:
+    def solution_1080_3(self, logs: List[str]) -> int:
+        res = 0
+        for i in logs:
+            if i == './':
+                continue
+            elif i == '../':
+                if res > 0:
+                    res -= 1
+            else:
+                res += 1
+        return res

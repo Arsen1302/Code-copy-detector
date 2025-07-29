@@ -1,0 +1,11 @@
+class Solution:
+    def solution_278_1(self, nums: List[int]) -> int:
+        c1,c2=0,0
+        for i in nums:
+            if i==1:
+                c1+=1
+            elif i==0:
+                c1=0
+            if c1>c2:
+                c2=c1
+        return c2

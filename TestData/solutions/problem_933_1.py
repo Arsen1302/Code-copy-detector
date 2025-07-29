@@ -1,0 +1,19 @@
+class Solution:
+    def solution_933_1(self, s: str, k: int) -> bool:
+        if k > len(s):
+            return False
+        dic = {}
+        
+        for i in s:
+            if i not in dic:
+                dic[i] = 1
+            else:
+                dic[i] += 1
+        c = 0        
+        for i in dic.values():
+            if i % 2 == 1:
+                c += 1
+        
+        if c > k:
+            return False
+        return True

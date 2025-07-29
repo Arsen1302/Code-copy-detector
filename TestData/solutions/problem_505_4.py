@@ -1,0 +1,12 @@
+class Solution:
+    def solution_505_4(self, head: ListNode, G: List[int]) -> int:
+        s = set(G)
+        res = 0
+        
+        while head:
+            if head.val in s and (head.next == None or head.next.val not in s):
+                res += 1
+        
+            head = head.next
+            
+        return res

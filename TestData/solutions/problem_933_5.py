@@ -1,0 +1,15 @@
+class Solution:
+    def solution_933_5(self, s: str, k: int) -> bool:
+        char = [i for i in s]
+        if len(char) < k : 
+            return False 
+        else : 
+            char_dic, odd_count = {}, 0
+            for ch in set(char) : 
+                char_dic[ch] = char.count(ch)
+                if (char.count(ch))%2 != 0 : 
+                    odd_count += 1 
+            if odd_count > k : 
+                return False 
+            else : 
+                return True

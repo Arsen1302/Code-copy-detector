@@ -1,0 +1,13 @@
+class Solution:
+    def solution_110_3_1(self, ax1: int, ay1: int, ax2: int, ay2: int, bx1: int, by1: int, bx2: int, by2: int) -> int:
+        
+        # Function to caculate solution_110_3_2 of rectangle (Length * width)
+        def solution_110_3_2(x1,y1,x2,y2):
+            return (x2-x1)*(y2-y1)
+        
+        # Finding the overlap rectangle length and width
+        overlapX = max(min(ax2,bx2)-max(ax1,bx1), 0)
+        overlapY = max(min(ay2,by2)-max(ay1,by1), 0)
+        
+        # Area1 + Area2 - Overlap Rectangle Area
+        return solution_110_3_2(ax1,ay1,ax2,ay2) + solution_110_3_2(bx1,by1,bx2,by2) - overlapX * overlapY

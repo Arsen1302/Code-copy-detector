@@ -1,0 +1,20 @@
+class Solution:
+    def solution_60_4(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(0,head)
+        prev, curr = head,head.next
+        # we can't go back so keep a previous pointer 
+        
+        while curr:
+            if curr.val >= prev.val:
+                prev = curr
+                curr = curr.next
+                continue
+            temp =  dummy
+            while curr.val > temp.next.val:
+                temp = temp.next
+                
+            prev.next = curr.next
+            curr.next = temp.next
+            temp.next = curr
+            curr = prev.next
+        return dummy.next

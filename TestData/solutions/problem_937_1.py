@@ -1,0 +1,3 @@
+class Solution:
+    def solution_937_1(self, s):
+        return len(s) + s.rstrip('0').count('0') + 2 * (s.count('1') != 1) - 1

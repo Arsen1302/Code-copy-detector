@@ -1,0 +1,7 @@
+class Solution:
+    def solution_1303_4(self, s: str, part: str) -> str:
+        while True:
+            if part in s:
+                s = s.replace(part, '', 1)
+            else:
+                return s

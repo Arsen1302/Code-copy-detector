@@ -1,0 +1,13 @@
+class Solution:
+    def solution_11_5(self, height: List[int]) -> int:
+        ret = 0
+        left, right = 0, len(height)-1
+        
+        while left < right:
+            ret = max(ret, (right-left) * min(height[left], height[right]))
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        
+        return ret

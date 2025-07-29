@@ -1,0 +1,20 @@
+class Solution:
+    def solution_583_5(self, root: TreeNode) -> TreeNode:
+        if not root or not root.left:
+            return root
+        
+        stack, node, prev = [], root, None
+        while node.left:
+            node = node.left
+        new_root, node = node, root
+        while stack or node:
+            while node:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            node.left = None
+            if prev:
+                prev.right = node
+            prev, node = node, node.right
+            
+        return new_root

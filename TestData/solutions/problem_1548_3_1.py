@@ -1,0 +1,36 @@
+class Solution:
+    def solution_1548_3_1(self, parent: List[int], s: str) -> int:
+        
+        graph = defaultdict(set)
+        for i in range(len(parent)):
+            graph[parent[i]].add(i)
+        
+        
+        answer = [1]
+        def solution_1548_3_2(node):
+            
+            if not graph[node]:
+                return 1, node
+            
+            pathsFromChildren = []
+            for neigh in graph[node]:
+                path, ch = solution_1548_3_2(neigh)
+                if s[node] != s[ch]:
+                    heappush(pathsFromChildren, -path)
+            
+            i = 0
+            pathSumForTwoBranches = 0
+            maxChildPath = -pathsFromChildren[0] if pathsFromChildren else 0
+            while pathsFromChildren and i < 2:
+                pathSumForTwoBranches += -heappop(pathsFromChildren)
+                i += 1
+            answer[0] = max(answer[0], 1 + pathSumForTwoBranches)
+                        
+            return maxChildPath + 1, node
+        
+        solution_1548_3_2(0)
+        return answer[0]
+
+# time and space complexity
+# time: O(V + Elog(E)), V = no of nodes, E = number of edges (len(parent))
+# space: O(V)

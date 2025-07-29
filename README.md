@@ -1,100 +1,51 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/BDrNFAy8)
-# **Code Copy Detector**
+# Code Duplicate Finder
 
-## **Task Description:**
+This is a Python tool I built to detect duplicate or highly similar code solutions among a large set of programming problem solutions. My goal was to make it easy to find alternative solutions to the same problem, even if they're written in different styles or use different approaches.
 
-You are provided with a dataset consisting of various programming solutions sourced from LeetCode. Each programming problem in the dataset has multiple independent implementations, showcasing different approaches and coding styles.
+## Features
+- Uses advanced transformer-based code embeddings for semantic similarity
+- Lets you retrieve alternative solutions for any code snippet you provide
+- Evaluates retrieval quality with metrics like Precision@K, Recall@K, F1@K, and Accuracy
+- Efficiently handles large datasets of Python files
 
-#### **Dataset Description**
+## About `embeddings.pkl`
+The `embeddings.pkl` file is an automatically generated cache that stores the vector representations (embeddings) of all code solutions in your dataset. These embeddings are created using a pre-trained transformer model the first time you run the tool. Caching them in this file makes subsequent runs much faster, since the tool can load the embeddings directly instead of recomputing them every time. If you add or change files in your dataset, you may want to delete `embeddings.pkl` so it can be rebuilt with the new data.
 
-The dataset consists of multiple programming problems, each accompanied by five independent solution implementations.
+## How It Works
+1. I embed all code solutions using a pre-trained model
+2. The tool indexes the solutions for fast similarity search
+3. When you paste your code, it retrieves the most similar solutions from the dataset
+4. It evaluates the results using standard information retrieval metrics
 
-**Dataset Structure:**
+## Usage
+1. Put your dataset in the `TestData/solutions` directory and make sure `TestData/test.csv` is present.
+2. Run the main script:
+   ```bash
+   python main.py
+   ```
+3. Paste your code when prompted. The tool will find and display the most similar solutions from the dataset.
 
-*   **Column 1 – problem\_description:** A text field containing the full description of the problem along with examples.
-    
-*   **Columns 2–6 – solution\_1\_path to solution\_5\_path:** Each column contains the file path to a distinct solution implemented in Python that correctly solves the described problem.
-    
+## Requirements
+- Python 3.8+
+- PyTorch
+- transformers
+- scikit-learn
+- tqdm
 
-#### **Objective**
-
-Your goal is to develop a retrieval system capable of identifying and returning alternative solutions to a specific LeetCode problem when given a single solution as input.
-
-*   **Input:** A single programming solution (code snippet).
-    
-*   **Output:** All other distinct solutions for the same problem from the dataset.
-    
-
-#### **Submission Guidelines**
-
-*   A working retrieval system (source code and documented usage instructions). Clearly structure your repository for easy reproduction. Include scripts or notebooks for data preprocessing, training, retrieval, and evaluation.
-    
-*   A detailed technical report describing your methodology, evaluation strategy, comparative results, and analysis.
-
-## Evaluation Metrics
-1. Precision@K
-   
-2. Recall@K
-
-3. F1-score@K
-   
-4. Accuracy
-
-## What to try
-
-You can start with the methods below or suggest your own method:
-
-* Vector-based Token Similarity
-
-* Keyword-based Retrieval
-
-* Textual Retrieval with BM25 or TF-IDF
-
-* Graph-based Approaches (Control Flow Graphs, Graph Meural Network)
-
-
-# GitHub Classroom Guideline
-
-**Step 1:** Accept the Assignment
-
-* Click on the GitHub Classroom assignment [link](https://classroom.github.com/a/BDrNFAy8).
-
-* Log in to your GitHub account (create an account if needed).
-
-* Click Accept assignment. GitHub Classroom will create a private repository for you to work on the assignment.
-
-**Step 2:** Clone the Repository
-
-* Go to your newly created assignment repository.
-
-* Click on the green Code button and copy the repository link.
-
-* Open your terminal or Git Bash and type:
+To install dependencies, just run:
 ```bash
-git clone [repository_link]
+pip install -r requirements.txt
 ```
-Navigate to the cloned folder:
-```bash
-cd [repository_name]
-```
-**Step 3:** Work on the Assignment
 
-* Create, modify, and complete your assignment files directly in the cloned folder on your computer.
+## Project Structure
+- `main.py` – Main entry point
+- `encoder.py` – Code embedding logic
+- `retrieval.py` – Retrieval and search logic
+- `utils.py` – Utility functions
+- `TestData/` – Dataset directory
+- `embeddings.pkl` – Cached code embeddings
 
-* Regularly commit your changes:
+---
 
-```bash
-    git add .
-    git commit -m "Descriptive message about your changes"
-```
-**Step 4:** Push Your Work to GitHub
-
-* Once you've committed your changes, push them to GitHub:
-```bash
-git push origin main
-```
-**Step 5:** Verify Submission
-
-* Visit your repository on GitHub to confirm your latest commits appear.
-
-* Ensure that all required files are properly uploaded and displayed.
+## That's It!
+Thanks for reading and checking out the project!

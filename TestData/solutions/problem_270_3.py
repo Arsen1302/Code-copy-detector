@@ -1,0 +1,10 @@
+class Solution:
+    def solution_270_3(self, num: int) -> int:
+        complement=""
+        for i in bin(num)[2:]:
+            if i is "0":
+                complement+="1"
+            else:
+                complement+="0"
+                
+        return int(complement,2)

@@ -1,0 +1,17 @@
+class Solution:
+    def solution_361_3(self, root: TreeNode, v: int, d: int) -> TreeNode:
+        if d == 1: return TreeNode(v, left=root) # edge case 
+        queue = [root]
+        while queue: 
+            d -= 1
+            if d == 1: 
+                for node in queue: 
+                    node.left = TreeNode(v, left=node.left)
+                    node.right = TreeNode(v, right=node.right)
+                break 
+            newq = []
+            for node in queue: 
+                if node.left: newq.append(node.left)
+                if node.right: newq.append(node.right)
+            queue = newq
+        return root
