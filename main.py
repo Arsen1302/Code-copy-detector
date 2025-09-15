@@ -50,7 +50,7 @@ def main():
         print(f"{metric}: {value:.4f}")
 
     print("\n🔍 Top similar files to the matched solution:")
-    for i, (fname) in enumerate(similar[:top_k]):
+    for i, (fname,score) in enumerate(similar[:top_k]):
         mark = "✅" if fname in relevant_files else "📄"
         print(f"{i+1:2d}. {mark} {fname:<30}")
 
